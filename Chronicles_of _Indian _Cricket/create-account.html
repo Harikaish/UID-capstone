@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account – Chronicles of Indian Cricket</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #07090f;
+  font-family: 'Rajdhani', sans-serif;
+  color: #f5edd8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(200,151,31,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 65px;
+  background: rgba(7,9,15,0.95);
+  border-bottom: 1px solid rgba(200,151,31,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-ball {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: conic-gradient(#ff8c00 0deg 120deg, white 120deg 240deg, #138808 240deg 360deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 0 15px rgba(200,151,31,0.5);
+}
+
+.logo-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f0c840;
+  line-height: 1.3;
+}
+
+.logo-text span {
+  display: block;
+  font-size: 9px;
+  color: #7280a0;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 20px 40px;
+}
+
+.card {
+  background: #0d1422;
+  border: 1px solid rgba(200,151,31,0.25);
+  border-radius: 24px;
+  padding: 46px 44px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #c8971f, #e07010, #c8971f, transparent);
+}
+
+.card-top {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card-icon {
+  width: 68px; height: 68px;
+  border-radius: 50%;
+  background: conic-gradient(#ff8c00 0deg 120deg, white 120deg 240deg, #138808 240deg 360deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 16px;
+  box-shadow: 0 0 25px rgba(200,151,31,0.45);
+}
+
+.card-top h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f0c840;
+  margin-bottom: 6px;
+}
+
+.card-top p {
+  font-size: 14px;
+  color: #7280a0;
+}
+
+.tricolor {
+  display: flex;
+  width: 55px;
+  height: 3px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 12px auto 0;
+}
+.tricolor span:nth-child(1) { flex: 1; background: #ff8c00; }
+.tricolor span:nth-child(2) { flex: 1; background: white; }
+.tricolor span:nth-child(3) { flex: 1; background: #138808; }
+
+.field { margin-bottom: 18px; }
+
+.field label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c8971f;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.input-wrap { position: relative; }
+
+.input-wrap .icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 13px 44px 13px 44px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(200,151,31,0.2);
+  border-radius: 12px;
+  color: #f5edd8;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.25s;
+}
+
+.input-wrap input::placeholder {
+  color: #4a5570;
+  font-weight: 400;
+}
+
+.input-wrap input:focus {
+  border-color: #c8971f;
+  background: rgba(200,151,31,0.06);
+  box-shadow: 0 0 0 3px rgba(200,151,31,0.1);
+}
+
+/* Show / hide password eye */
+.eye-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  color: #7280a0;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Error text */
+.err {
+  display: none;
+  font-size: 12px;
+  color: #e05050;
+  margin-top: 5px;
+  padding-left: 2px;
+}
+
+/* Password strength bar */
+.strength-wrap {
+  margin-top: 10px;
+  display: none;
+}
+
+.strength-bar {
+  height: 5px;
+  border-radius: 5px;
+  background: #1a2030;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 5px;
+  width: 0%;
+  transition: all 0.3s;
+}
+
+.strength-label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Password checklist */
+.checklist {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 10px;
+}
+
+.checklist li {
+  font-size: 12px;
+  color: #7280a0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s;
+}
+
+.checklist li.pass { color: #4caf50; }
+
+.checklist li::before {
+  content: '✗';
+  font-size: 11px;
+  color: #e05050;
+  font-weight: 700;
+}
+
+.checklist li.pass::before {
+  content: '✓';
+  color: #4caf50;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #c8971f, #e07010);
+  color: #07090f;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 6px 24px rgba(200,151,31,0.35);
+  margin-top: 6px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(200,151,31,0.5);
+}
+
+.login-link {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #7280a0;
+}
+
+.login-link a {
+  color: #f0c840;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover { text-decoration: underline; }
+
+/* Success box */
+.success-box {
+  display: none;
+  text-align: center;
+  padding: 20px 0 10px;
+}
+
+.success-emoji {
+  font-size: 70px;
+  display: block;
+  margin-bottom: 16px;
+  animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.success-box h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #f0c840;
+  margin-bottom: 8px;
+}
+
+.success-box p {
+  font-size: 14px;
+  color: #7280a0;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.go-login {
+  display: inline-block;
+  padding: 13px 36px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #c8971f, #e07010);
+  color: #07090f;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 6px 24px rgba(200,151,31,0.4);
+}
+
+.go-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 34px rgba(200,151,31,0.55);
+}
+
+footer {
+  text-align: center;
+  padding: 26px;
+  border-top: 1px solid rgba(200,151,31,0.1);
+  color: #7280a0;
+  font-size: 13px;
+}
+
+footer span { color: #c8971f; }
+
+@media (max-width: 520px) {
+  .card { padding: 34px 20px; }
+  .checklist { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="login.html">
+    <div class="logo-ball">🏏</div>
+    <div class="logo-text">Chronicles of Indian Cricket <span>SINCE 1932</span></div>
+  </a>
+</nav>
+
+<main>
+  <div class="card">
+
+    <!-- CREATE ACCOUNT FORM -->
+    <div id="form-section">
+
+      <div class="card-top">
+        <div class="card-icon">🏏</div>
+        <h1>Create Account</h1>
+        <p>Set up your name and password to get started</p>
+        <div class="tricolor"><span></span><span></span><span></span></div>
+      </div>
+
+      <!-- NAME -->
+      <div class="field">
+        <label>Your Name</label>
+        <div class="input-wrap">
+          <span class="icon"></span>
+          <input type="text" id="reg-name" placeholder="Enter your name (letters only)" oninput="checkName()">
+        </div>
+        <div class="err" id="name-err">⚠ Name must contain only letters and spaces — no numbers or symbols</div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="field">
+        <label>Create Password</label>
+        <div class="input-wrap">
+          <span class="icon"></span>
+          <input type="password" id="reg-pass" placeholder="Create a strong password" oninput="checkPassword()">
+          <button class="eye-btn" onclick="togglePass('reg-pass', this)" type="button"></button>
+        </div>
+        <div class="err" id="pass-err">⚠ Password is too weak. See requirements below.</div>
+
+        <!-- Strength bar and checklist -->
+        <div class="strength-wrap" id="strength-wrap">
+          <div class="strength-bar">
+            <div class="strength-fill" id="strength-fill"></div>
+          </div>
+          <div class="strength-label" id="strength-label"></div>
+          <ul class="checklist">
+            <li id="chk-letter">Has letters (a–z)</li>
+            <li id="chk-upper">Has uppercase (A–Z)</li>
+            <li id="chk-number">Has numbers (0–9)</li>
+            <li id="chk-symbol">Has symbols (!@#$...)</li>
+            <li id="chk-length">At least 8 characters</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CONFIRM PASSWORD -->
+      <div class="field">
+        <label>Confirm Password</label>
+        <div class="input-wrap">
+          <span class="icon"></span>
+          <input type="password" id="reg-confirm" placeholder="Re-enter your password" oninput="checkConfirm()">
+          <button class="eye-btn" onclick="togglePass('reg-confirm', this)" type="button">👁</button>
+        </div>
+        <div class="err" id="confirm-err">⚠ Passwords do not match</div>
+      </div>
+
+      <button class="submit-btn" onclick="createAccount()">✅ Create Account</button>
+
+      <div class="login-link">Already have an account? <a href="login.html">Login here</a></div>
+
+    </div>
+
+
+    <div class="success-box" id="success-section">
+      <span class="success-emoji"></span>
+      <h2>Account Created!</h2>
+      <p>Your account has been set up successfully.<br>You can now log in with your credentials.</p>
+      <a class="go-login" href="login.html"> Go to Login</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  🏏 <span>Chronicles of Indian Cricket</span> · Est. 1932
+</footer>
+
+<script>
+
+
+function togglePass(id, btn) {
+  var input = document.getElementById(id);
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = '';
+  } else {
+    input.type = 'password';
+    btn.textContent = '';
+  }
+}
+
+function checkName() {
+  var name = document.getElementById('reg-name').value;
+  var err  = document.getElementById('name-err');
+  var regex = /^[a-zA-Z\s]+$/;
+  if (name.length > 0 && !regex.test(name)) {
+    err.style.display = 'block';
+  } else {
+    err.style.display = 'none';
+  }
+}
+
+// Check password strength
+function checkPassword() {
+  var pass = document.getElementById('reg-pass').value;
+  var wrap = document.getElementById('strength-wrap');
+
+  if (pass.length === 0) {
+    wrap.style.display = 'none';
+    return;
+  }
+
+  wrap.style.display = 'block';
+
+  var hasLower  = /[a-z]/.test(pass);
+  var hasUpper  = /[A-Z]/.test(pass);
+  var hasNumber = /[0-9]/.test(pass);
+  var hasSymbol = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]/.test(pass);
+  var hasLength = pass.length >= 8;
+
+
+  setCheck('chk-letter', hasLower);
+  setCheck('chk-upper',  hasUpper);
+  setCheck('chk-number', hasNumber);
+  setCheck('chk-symbol', hasSymbol);
+  setCheck('chk-length', hasLength);
+
+ 
+  var score = [hasLower, hasUpper, hasNumber, hasSymbol, hasLength].filter(Boolean).length;
+
+  var fill  = document.getElementById('strength-fill');
+  var label = document.getElementById('strength-label');
+
+  if (score <= 2) {
+    fill.style.width      = '25%';
+    fill.style.background = '#e05050';
+    label.style.color     = '#e05050';
+    label.textContent     = '🔴 Very Weak';
+  } else if (score === 3) {
+    fill.style.width      = '50%';
+    fill.style.background = '#e07010';
+    label.style.color     = '#e07010';
+    label.textContent     = '🟠 Weak';
+  } else if (score === 4) {
+    fill.style.width      = '75%';
+    fill.style.background = '#f0c840';
+    label.style.color     = '#f0c840';
+    label.textContent     = '🟡 Good';
+  } else {
+    fill.style.width      = '100%';
+    fill.style.background = '#4caf50';
+    label.style.color     = '#4caf50';
+    label.textContent     = '🟢 Strong';
+  }
+}
+
+function setCheck(id, passed) {
+  var el = document.getElementById(id);
+  if (passed) {
+    el.classList.add('pass');
+  } else {
+    el.classList.remove('pass');
+  }
+}
+
+
+function checkConfirm() {
+  var pass    = document.getElementById('reg-pass').value;
+  var confirm = document.getElementById('reg-confirm').value;
+  var err     = document.getElementById('confirm-err');
+  if (confirm.length > 0 && pass !== confirm) {
+    err.style.display = 'block';
+  } else {
+    err.style.display = 'none';
+  }
+}
+
+
+function createAccount() {
+
+  var name    = document.getElementById('reg-name').value.trim();
+  var pass    = document.getElementById('reg-pass').value;
+  var confirm = document.getElementById('reg-confirm').value;
+
+  var valid = true;
+
+
+  document.getElementById('name-err').style.display    = 'none';
+  document.getElementById('pass-err').style.display    = 'none';
+  document.getElementById('confirm-err').style.display = 'none';
+
+  var nameRegex = /^[a-zA-Z\s]+$/;
+  if (name === '' || !nameRegex.test(name)) {
+    document.getElementById('name-err').style.display = 'block';
+    valid = false;
+  }
+
+  // Password must have letters, uppercase, numbers AND symbols
+  var hasLower  = /[a-z]/.test(pass);
+  var hasUpper  = /[A-Z]/.test(pass);
+  var hasNumber = /[0-9]/.test(pass);
+  var hasSymbol = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]/.test(pass);
+  var hasLength = pass.length >= 8;
+
+  if (!hasLower || !hasUpper || !hasNumber || !hasSymbol || !hasLength) {
+
+    document.getElementById('pass-err').style.display = 'block';
+    document.getElementById('strength-wrap').style.display = 'block';
+
+
+    setCheck('chk-letter', hasLower);
+    setCheck('chk-upper',  hasUpper);
+    setCheck('chk-number', hasNumber);
+    setCheck('chk-symbol', hasSymbol);
+    setCheck('chk-length', hasLength);
+
+   
+    var missing = [];
+    if (!hasLower)  missing.push('lowercase letters');
+    if (!hasUpper)  missing.push('uppercase letters');
+    if (!hasNumber) missing.push('numbers');
+    if (!hasSymbol) missing.push('symbols');
+    if (!hasLength) missing.push('at least 8 characters');
+
+    document.getElementById('pass-err').textContent = '⚠ Your password is weak. Please add: ' + missing.join(', ') + '.';
+    document.getElementById('pass-err').style.display = 'block';
+
+    valid = false;
+  }
+
+
+  if (pass !== confirm) {
+    document.getElementById('confirm-err').style.display = 'block';
+    valid = false;
+  }
+
+ 
+  if (valid) {
+    localStorage.setItem('savedName', name);
+    localStorage.setItem('savedPass', pass);
+
+    document.getElementById('form-section').style.display  = 'none';
+    document.getElementById('success-section').style.display = 'block';
+  }
+
+}
+
+</script>
+</body>
+</html>

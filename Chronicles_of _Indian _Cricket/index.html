@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>	
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chronicles of Indian Cricket – Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#07090f;
+  --gold:#c8971f;
+  --gold2:#f0c84a;
+  --saffron:#ff8c00;
+  --green:#138808;
+  --cream:#faf3e0;
+  --muted:#8a90a2;
+  --card-bg:rgba(255,255,255,0.03);
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  font-family:'Rajdhani',sans-serif;
+  color:var(--cream);
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.35;
+}
+.bg-radial{
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% -5%, rgba(200,151,31,0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 90% 110%, rgba(19,136,8,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 5% 90%, rgba(255,140,0,0.07) 0%, transparent 60%);
+  pointer-events:none;
+}	
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 52px;height:70px;
+  background:rgba(7,9,15,0.88);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(200,151,31,0.2);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-circle{
+  width:42px;height:42px;border-radius:50%;
+  background:conic-gradient(var(--saffron) 0deg 120deg, white 120deg 240deg, var(--green) 240deg 360deg);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;box-shadow:0 0 18px rgba(200,151,31,0.5);flex-shrink:0;
+}
+.logo-text{font-family:'Cinzel Decorative',serif;font-size:13px;color:var(--gold2);line-height:1.3;}
+.logo-text small{display:block;font-family:'Rajdhani',sans-serif;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;}
+.nav-links{display:flex;gap:6px;}
+.nav-a{
+  padding:9px 22px;border-radius:50px;
+  border:1px solid rgba(200,151,31,0.25);
+  background:transparent;color:var(--cream);
+  font-family:'Rajdhani',sans-serif;font-size:13px;
+  font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;transition:all 0.28s;
+  position:relative;overflow:hidden;
+}
+.nav-a::after{
+  content:'';position:absolute;inset:0;border-radius:50px;
+  background:linear-gradient(135deg,var(--gold),var(--saffron));
+  opacity:0;transition:opacity 0.28s;
+}
+.nav-a:hover::after,.nav-a.active::after{opacity:1;}
+.nav-a span{position:relative;z-index:1;}
+.hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:grid;place-items:center;
+  padding:100px 30px 60px;
+  text-align:center;
+}
+.rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.ring{
+  position:absolute;border-radius:50%;
+  border:2px solid rgba(200,151,31,0.08);
+  transform:translate(-50%,-50%);
+
+}
+.ring:nth-child(1){width:500px;height:500px;}
+.ring:nth-child(2){width:700px;height:700px;}
+.ring:nth-child(3){width:900px;height:900px;}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+.hero-content{position:relative;z-index:2;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:28px;
+  animation:fadeUp 0.7s ease both;
+}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--gold);display:inline-block;}
+.hero-h1{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(40px,8vw,96px);
+  font-weight:900;line-height:0.95;
+  margin-bottom:20px;
+  animation:fadeUp 0.7s 0.12s ease both;
+}
+.hero-h1 .line1{
+  display:block;
+  background:linear-gradient(135deg,#faf3e0,var(--gold2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-h1 .line2{
+  display:block;
+  background:linear-gradient(135deg,var(--saffron),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,2.5vw,22px);font-style:italic;
+  color:var(--muted);max-width:600px;margin:0 auto 50px;line-height:1.7;
+  animation:fadeUp 0.7s 0.24s ease both;
+}
+.hero-tricolor{
+  display:flex;gap:0;margin:0 auto 50px;
+  width:90px;height:4px;border-radius:4px;overflow:hidden;
+  animation:fadeUp 0.7s 0.3s ease both;
+}
+.hero-tricolor span:nth-child(1){flex:1;background:var(--saffron);}
+.hero-tricolor span:nth-child(2){flex:1;background:white;}
+.hero-tricolor span:nth-child(3){flex:1;background:var(--green);}
+.stats-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;margin-bottom:56px;
+  animation:fadeUp 0.7s 0.38s ease both;
+}
+.stat{text-align:center;padding:0 36px;}
+.stat-num{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(28px,4vw,46px);color:var(--gold2);font-weight:700;line-height:1;
+}
+.stat-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.stat-sep{width:1px;height:55px;background:rgba(200,151,31,0.2);}
+.hero-buttons{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp 0.7s 0.46s ease both;
+}
+.btn-gold{
+  padding:15px 38px;border-radius:50px;
+  background:linear-gradient(135deg,var(--gold),var(--saffron));
+  border:none;color:var(--ink);
+  font-family:'Rajdhani',sans-serif;font-size:14px;
+  font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;transition:all 0.3s;
+  box-shadow:0 8px 28px rgba(200,151,31,0.4);text-decoration:none;display:inline-block;
+}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(200,151,31,0.55);}
+.btn-ghost{
+  padding:15px 38px;border-radius:50px;
+  border:1px solid rgba(200,151,31,0.35);
+  background:transparent;color:var(--gold2);
+  font-family:'Rajdhani',sans-serif;font-size:14px;
+  font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-block;
+}
+.btn-ghost:hover{background:rgba(200,151,31,0.09);border-color:var(--gold);transform:translateY(-3px);}
+.scroll-arrow{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  animation:fadeUp 0.7s 0.6s ease both;
+  color:var(--muted);font-size:10px;letter-spacing:3px;text-transform:uppercase;
+}
+.arrow-icon{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid rgba(200,151,31,0.3);
+  display:flex;align-items:center;justify-content:center;
+  animation:bounce 1.8s ease infinite;
+}
+.section{position:relative;z-index:1;padding:90px 40px;max-width:1200px;margin:0 auto;}
+.section-head{text-align:center;margin-bottom:70px;}
+.section-eye{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.section-title{font-family:'Cinzel Decorative',serif;font-size:clamp(24px,4vw,44px);color:var(--cream);margin-bottom:20px;}
+.section-rule{width:70px;height:2px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.timeline{position:relative;padding:10px 0;}
+.timeline-spine{
+  position:absolute;left:50%;top:0;bottom:0;
+  width:1px;background:linear-gradient(180deg,transparent,rgba(200,151,31,0.35),transparent);
+  transform:translateX(-50%);
+}
+.tl-item{
+  display:flex;justify-content:flex-end;
+  padding-right:calc(50% + 44px);
+  margin-bottom:56px;position:relative;
+}
+.tl-item:nth-child(even){
+  justify-content:flex-start;
+  padding-right:0;padding-left:calc(50% + 44px);
+}
+.tl-node{
+  position:absolute;left:50%;top:22px;
+  width:13px;height:13px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 18px rgba(200,151,31,0.7);
+  transform:translateX(-50%);
+}
+.tl-card{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(200,151,31,0.14);
+  border-radius:18px;padding:26px 30px;max-width:420px;transition:all 0.35s;
+}
+.tl-card:hover{
+  background:rgba(200,151,31,0.05);border-color:rgba(200,151,31,0.4);
+  transform:translateY(-5px);box-shadow:0 18px 50px rgba(0,0,0,0.4);
+}
+.tl-emoji{font-size:30px;display:block;margin-bottom:10px;}
+.tl-year{font-family:'Cinzel Decorative',serif;font-size:26px;color:var(--gold);font-weight:700;}
+.tl-event{font-size:16px;font-weight:600;color:var(--cream);margin:6px 0 10px;}
+.tl-desc{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--muted);line-height:1.65;}
+.quote-section{
+  position:relative;z-index:1;padding:80px 30px;text-align:center;
+  border-top:1px solid rgba(200,151,31,0.1);border-bottom:1px solid rgba(200,151,31,0.1);
+}
+.quote-marks{font-family:'Cormorant Garamond',serif;font-size:120px;line-height:0.6;color:rgba(200,151,31,0.15);margin-bottom:30px;display:block;}
+.quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,32px);font-style:italic;color:var(--cream);max-width:750px;margin:0 auto 20px;line-height:1.5;}
+.quote-attr{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+footer{position:relative;z-index:1;text-align:center;padding:40px;border-top:1px solid rgba(200,151,31,0.1);color:var(--muted);font-size:13px;}
+footer span{color:var(--gold);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<script>
+  if (sessionStorage.getItem('loggedIn') !== 'yes') {
+    window.location.href = 'login.html';
+  }
+</script>
+<div class="bg-radial"></div>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="logo-circle">🏏</div>
+    <div class="logo-text">Chronicles of<br>Indian Cricket<small>Since 1932</small></div>
+  </a>
+  <div class="nav-links">
+    <a class="nav-a active" href="index.html"><span>Home</span></a>
+    <a class="nav-a" href="trophies.html"><span>Trophies</span></a>
+    <a class="nav-a" href="records.html"><span>Records</span></a>
+    <a class="nav-a" href="legends.html"><span>Legends</span></a>
+    <a class="nav-a" href="login.html"><span>Login</span></a>
+  </div>
+</nav>
+<section class="hero">
+  <div class="rings">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="dot"></span> Est. 1932 <span class="dot"></span> A Nation's Passion <span class="dot"></span></div>
+    <h1 class="hero-h1">
+      <span class="line1">Chronicles of</span>
+      <span class="line2">Indian Cricket</span>
+    </h1>
+    <p class="hero-sub">From dusty maidans to floodlit stadiums — the epic saga of a billion dreams, played out in whites and blues across every corner of the globe.</p>
+    <div class="hero-tricolor"><span></span><span></span><span></span></div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">92+</div><div class="stat-lbl">Years of Glory</div></div>
+      <div class="stat-sep"></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">World Cups Won</div></div>
+      <div class="stat-sep"></div>
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-lbl">Legends Produced</div></div>
+      <div class="stat-sep"></div>
+      <div class="stat"><div class="stat-num">1.4B</div><div class="stat-lbl">Passionate Fans</div></div>
+    </div><br><br><br><br><br><br>
+  <div class="scroll-arrow">
+    <span>Scroll</span>
+    <div class="arrow-icon">↓</div>
+  </div>
+</section>
+<div class="section">
+  <div class="section-head">
+    <p class="section-eye">◆ A Nation's Journey ◆</p>
+    <h2 class="section-title">The Grand Timeline</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-spine"></div>
+    <div class="tl-item">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🏟️</span>
+        <div class="tl-year">1932</div>
+        <div class="tl-event">India's First Test Match</div>
+        <p class="tl-desc">India played their inaugural Test match at Lord's Cricket Ground, London, under the captaincy of C.K. Nayudu — marking the birth of Indian international cricket.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🌟</span>
+        <div class="tl-year">1952</div>
+        <div class="tl-event">First Test Series Win</div>
+        <p class="tl-desc">India recorded their first-ever Test series victory against England at home, signalling the rise of a cricketing power that would one day rule the world.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🏆</span>
+        <div class="tl-year">1983</div>
+        <div class="tl-event">World Cup Miracle – Kapil's Devils</div>
+        <p class="tl-desc">Under Kapil Dev's inspirational leadership, India shocked the cricketing world by defeating the mighty West Indies in the final at Lord's. A billion hearts erupted.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🏟️</span>
+        <div class="tl-year">1996</div>
+        <div class="tl-event">India Co-Hosts World Cup</div>
+        <p class="tl-desc">India, Pakistan and Sri Lanka jointly hosted the ICC Cricket World Cup. The tournament shattered attendance records and cemented cricket's status as a subcontinental religion.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🔵</span>
+        <div class="tl-year">2007</div>
+        <div class="tl-event">T20 World Champions</div>
+        <p class="tl-desc">A young side led by MS Dhoni won India's first-ever ICC World Twenty20 title in South Africa, launching the T20 revolution with a nail-biting final against Pakistan.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🏆</span>
+        <div class="tl-year">2011</div>
+        <div class="tl-event">World Cup Homecoming</div>
+        <p class="tl-desc">28 years after 1983, MS Dhoni's iconic six at Wankhede sent India into delirium. Sachin Tendulkar — playing his 6th World Cup — finally lifted the trophy.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🌍</span>
+        <div class="tl-year">2023</div>
+        <div class="tl-event">50-Over World Cup Finalists</div>
+        <p class="tl-desc">India stormed through the World Cup unbeaten in the league stage before a heartbreaking final loss to Australia in Ahmedabad — but the journey was unforgettable.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-node"></div>
+      <div class="tl-card">
+        <span class="tl-emoji">🏆</span>
+        <div class="tl-year">2024</div>
+        <div class="tl-event">T20 World Champions Again</div>
+        <p class="tl-desc">Rohit Sharma's India clinched the T20 World Cup in the West Indies and USA, defeating South Africa in a thrilling final — ending an 11-year ICC title drought.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="quote-section">
+  <span class="quote-marks">"</span>
+  <p class="quote-text">Cricket is not just a sport in India. It is a religion, a way of life, a binding force that unites a billion people under one emotion — hope.</p>
+  <div class="quote-attr">◆ The Spirit of Indian Cricket ◆</div>
+</div>
+<footer>
+  <p>🏏 <span>Chronicles of Indian Cricket</span> · Est. 1932 · A tribute to every dream bowled, batted and fielded for the nation.</p>
+</footer>
+</body>
+</html>
